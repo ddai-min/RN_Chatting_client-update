@@ -1,8 +1,22 @@
 import React from 'react';
-import { Container } from 'native-base';
+import { ScrollView, Menu, Pressable, HamburgerIcon, Box } from 'native-base';
 
 export default function Chat() {
     return (
-        <Container></Container>
+        <ScrollView bg="white">
+            <Box paddingLeft="3">
+                <Menu
+                    w="190"
+                    trigger={(triggerProps) => {
+                        return (
+                            <Pressable accessibilityLabel="More options menu" {...triggerProps}>
+                                <HamburgerIcon />
+                            </Pressable>
+                        )
+                    }}>
+                    <Menu.Item>방 만들기</Menu.Item>
+                </Menu>
+            </Box>
+        </ScrollView>
     );
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container } from 'native-base';
+import { ScrollView } from 'native-base';
 
 export default function ListIndex() {
     return (
-        <Container></Container>
+        <ScrollView bg="white"></ScrollView>
     );
 }

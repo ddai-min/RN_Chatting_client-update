@@ -12,17 +12,17 @@ export default function MainIndex() {
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
-                headerShown: false,
+                // headerShown: false,
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
-                    if (route.name === "ListIndex") {
+                    if (route.name === "친구 목록") {
                         iconName = focused ? 'people' : 'people-outline';
                     }
-                    else if (route.name === "ChatIndex") {
+                    else if (route.name === "채팅 목록") {
                         iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
                     }
-                    else if (route.name === "RecommendIndex") {
+                    else if (route.name === "친구 추천 목록") {
                         iconName = focused ? 'person-add' : 'person-add-outline';
                     }
 
@@ -31,9 +31,9 @@ export default function MainIndex() {
                 tabBarActiveTintColor: 'black',
                 tabBarInactiveTintColor: 'gray',
             })}>
-            <Tab.Screen name="ListIndex" component={ListIndex}></Tab.Screen>
-            <Tab.Screen name="ChatIndex" component={ChatIndex}></Tab.Screen>
-            <Tab.Screen name="RecommendIndex" component={RecommendIndex}></Tab.Screen>
+            <Tab.Screen name="친구 목록" component={ListIndex}></Tab.Screen>
+            <Tab.Screen name="채팅 목록" component={ChatIndex}></Tab.Screen>
+            <Tab.Screen name="친구 추천 목록" component={RecommendIndex}></Tab.Screen>
         </Tab.Navigator>
     );
 }
