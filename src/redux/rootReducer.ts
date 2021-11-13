@@ -3,7 +3,7 @@ import type {LoginActions} from './actions'
 
 const initialState: AppState = {
   loggedIn: false,
-  loggedUser: {id: '', password: ''}
+  loggedUser: {email: '', name: '', password: ''}
 }
 
 export const rootReducer = (
