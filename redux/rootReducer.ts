@@ -1,12 +1,14 @@
-import { AppState } from "./AppState";
-import type { LoginActions } from './actions';
+import {AppState} from './AppState'
+import type {LoginActions} from './actions'
 
 const initialState: AppState = {
-    loggedIn: false,
-    loggedUser: { id: '', password: '' }
+  loggedIn: false,
+  loggedUser: {id: '', password: ''}
 }
 
-export const rootReducer =
-    (state: AppState = initialState, action: LoginActions) => {
-        return state;
-    }
+export const rootReducer = (
+  state: AppState = initialState,
+  action: LoginActions
+) => {
+  return state
+}
