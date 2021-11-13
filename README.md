@@ -4,7 +4,7 @@ You must clone https://github.com/ddai-min/RN_Chatting_server-update.git for ser
 
 used skills : expo cli, redux    
 
-Directory description.  
+Description to directory of src  
 screens : It's an application screen.  
 server : It's the part that communicates with the server.  
 store : It's the redux part that manages the condition.  
