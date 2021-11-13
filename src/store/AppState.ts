@@ -10,3 +10,7 @@ export type AppState = {
   loggedIn: boolean
   loggedUser: User
 }
+import * as L from './login'
+export type AppState = {
+  login: L.State
+}
