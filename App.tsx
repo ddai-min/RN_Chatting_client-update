@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {NativeBaseProvider} from 'native-base'
 
-import {makeStore} from './src/redux'
+import {makeStore} from './src/store'
 import {makeTheme} from './theme'
 
 import Initial from './src/screens/initial/initial'
