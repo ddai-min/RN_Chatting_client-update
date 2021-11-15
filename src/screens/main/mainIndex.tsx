@@ -1,39 +1,57 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import React from 'react'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import {Ionicons} from '@expo/vector-icons'
+import {Menu, Pressable, HamburgerIcon} from 'native-base'
 
-import ListIndex from './list/listIndex';
-import ChatIndex from './chat/chatIndex';
-import RecommendIndex from './recommend/recommendIndex';
+import ListIndex from './list/listIndex'
+import ChatIndex from './chat/chatIndex'
+import RecommendIndex from './recommend/recommendIndex'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 export default function MainIndex() {
-    return (
-        <Tab.Navigator
-            screenOptions={({ route }) => ({
-                // headerShown: false,
-                tabBarIcon: ({ focused, color, size }) => {
-                    let iconName;
+  return (
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        // headerShown: false,
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName
 
-                    if (route.name === "친구 목록") {
-                        iconName = focused ? 'people' : 'people-outline';
-                    }
-                    else if (route.name === "채팅 목록") {
-                        iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
-                    }
-                    else if (route.name === "친구 추천 목록") {
-                        iconName = focused ? 'person-add' : 'person-add-outline';
-                    }
+          if (route.name === '친구 목록') {
+            iconName = focused ? 'people' : 'people-outline'
+          } else if (route.name === '채팅 목록') {
+            iconName = focused ? 'chatbubbles' : 'chatbubbles-outline'
+          } else if (route.name === '친구 추천 목록') {
+            iconName = focused ? 'person-add' : 'person-add-outline'
+          }
 
-                    return <Ionicons name={iconName} size={size} color={color}></Ionicons>;
-                },
-                tabBarActiveTintColor: 'black',
-                tabBarInactiveTintColor: 'gray',
-            })}>
-            <Tab.Screen name="친구 목록" component={ListIndex}></Tab.Screen>
-            <Tab.Screen name="채팅 목록" component={ChatIndex}></Tab.Screen>
-            <Tab.Screen name="친구 추천 목록" component={RecommendIndex}></Tab.Screen>
-        </Tab.Navigator>
-    );
+          return <Ionicons name={iconName} size={size} color={color}></Ionicons>
+        },
+        tabBarActiveTintColor: 'black',
+        tabBarInactiveTintColor: 'gray'
+      })}>
+      <Tab.Screen name="친구 목록" component={ListIndex}></Tab.Screen>
+      <Tab.Screen
+        name="채팅 목록"
+        component={ChatIndex}
+        options={{
+          headerRight: () => (
+            <Menu
+              w="190"
+              trigger={(triggerProps) => {
+                return (
+                  <Pressable
+                    accessibilityLabel="More options menu"
+                    {...triggerProps}>
+                    <HamburgerIcon />
+                  </Pressable>
+                )
+              }}>
+              <Menu.Item>방 만들기</Menu.Item>
+            </Menu>
+          )
+        }}></Tab.Screen>
+      <Tab.Screen name="친구 추천 목록" component={RecommendIndex}></Tab.Screen>
+    </Tab.Navigator>
+  )
 }
