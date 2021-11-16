@@ -1,7 +1,17 @@
 import React from 'react'
-import {Menu, Pressable, HamburgerIcon} from 'native-base'
+import {Menu, Pressable, HamburgerIcon, Divider} from 'native-base'
+import {useDispatch} from 'react-redux'
+import {logoutAction} from '../../../store/login'
+import {useNavigation} from '@react-navigation/native'
 
 export function MenuBar() {
+  const navigation = useNavigation()
+  const dispatch = useDispatch()
+  const logout = () => {
+    dispatch(logoutAction())
+    navigation.navigate('LoginIndex')
+  }
+
   return (
     <Menu
       w="190"
@@ -13,6 +23,8 @@ export function MenuBar() {
         )
       }}>
       <Menu.Item>방 만들기</Menu.Item>
+      <Divider my="3" w="100%" />
+      <Menu.Item onPress={logout}>로그아웃</Menu.Item>
     </Menu>
   )
 }

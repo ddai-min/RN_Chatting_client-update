@@ -13,8 +13,11 @@ import {
 } from 'native-base'
 import {useDispatch} from 'react-redux'
 import {loginAction} from '../../store/login'
+import {useNavigation} from '@react-navigation/native'
 
-export default function Login({navigation}: any) {
+export default function Login() {
+  const navigation = useNavigation()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailError, setEmailError] = useState('')
