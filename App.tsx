@@ -7,9 +7,9 @@ import {NativeBaseProvider} from 'native-base'
 import {makeStore} from './src/store'
 import {makeTheme} from './theme'
 
-import Initial from './src/screens/initial/initial'
+import Initial from './src/screens/login/initial'
 import LoginIndex from './src/screens/login/loginIndex'
-import Category from './src/screens/category/category'
+import Category from './src/screens/login/category'
 import MainIndex from './src/screens/main/mainIndex'
 
 const Stack = createNativeStackNavigator()
