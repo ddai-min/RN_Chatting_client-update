@@ -12,7 +12,7 @@ import {
   Badge
 } from 'native-base'
 import {useDispatch} from 'react-redux'
-import {loginAction} from '../../store/login'
+import * as L from '../../store/login'
 import {useNavigation} from '@react-navigation/native'
 
 export default function Login() {
@@ -25,7 +25,7 @@ export default function Login() {
 
   const dispatch = useDispatch()
   const checkForm = () => {
-    dispatch(loginAction({email, password}))
+    dispatch(L.loginAction({email, password}))
     var emailValid = false
     var passwordValid = false
 

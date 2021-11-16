@@ -10,7 +10,7 @@ import {
   Badge
 } from 'native-base'
 import {useDispatch} from 'react-redux'
-import {signupAction} from '../../store/signup'
+import * as S from '../../store/signup'
 import {useNavigation} from '@react-navigation/native'
 
 export default function Signup() {
@@ -25,7 +25,7 @@ export default function Signup() {
 
   const dispatch = useDispatch()
   const checkForm = () => {
-    dispatch(signupAction({name, email, password}))
+    dispatch(S.signupAction({name, email, password}))
     var nameValid = false
     var emailValid = false
     var passwordValid = false
@@ -58,7 +58,7 @@ export default function Signup() {
     }
 
     if (nameValid && emailValid && passwordValid) {
-      navigation.pop()
+      navigation.goBack()
     }
   }
 
