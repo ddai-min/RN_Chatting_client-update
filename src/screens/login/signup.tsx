@@ -20,7 +20,9 @@ export default function Signup({navigation}: any) {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
+  const dispatch = useDispatch()
   const checkForm = () => {
+    dispatch(signupAction({name, email, password}))
     var nameValid = false
     var emailValid = false
     var passwordValid = false
@@ -65,7 +67,7 @@ export default function Signup({navigation}: any) {
           <Input
             type="name"
             placeholder="name"
-            onChangeText={(text) => setName(text)}
+            onChangeText={setName}
             value={name}></Input>
           <FormControl.HelperText>이름을 입력해주세요.</FormControl.HelperText>
         </FormControl>
@@ -80,7 +82,7 @@ export default function Signup({navigation}: any) {
           <Input
             type="email"
             placeholder="email"
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={setEmail}
             value={email}></Input>
           <FormControl.HelperText>
             이메일을 입력해주세요.
@@ -97,7 +99,7 @@ export default function Signup({navigation}: any) {
           <Input
             type="password"
             placeholder="password"
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={setPassword}
             value={password}></Input>
           <FormControl.HelperText>
             비밀번호를 입력해주세요.
