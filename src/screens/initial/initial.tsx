@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Text, Button, Center} from 'native-base'
 
-export default function Initial({navigation}) {
+export default function Initial({navigation}: any) {
   return (
     <Box flex={1} bg="white" safeAreaTop>
       <Center flex={1}>

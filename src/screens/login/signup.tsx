@@ -9,8 +9,10 @@ import {
   Text,
   Badge
 } from 'native-base'
+import {useDispatch} from 'react-redux'
+import {signupAction} from '../../store/signup'
 
-export default function Signup({navigation}) {
+export default function Signup({navigation}: any) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
