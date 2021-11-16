@@ -1,7 +1,7 @@
 import React from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {Ionicons} from '@expo/vector-icons'
-import {Menu, Pressable, HamburgerIcon} from 'native-base'
+import {MenuBar} from './utils/menuBar'
 
 import ListIndex from './list/listIndex'
 import ChatIndex from './chat/chatIndex'
@@ -30,28 +30,22 @@ export default function MainIndex() {
         tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: 'gray'
       })}>
-      <Tab.Screen name="친구 목록" component={ListIndex}></Tab.Screen>
+      <Tab.Screen
+        name="친구 목록"
+        component={ListIndex}
+        options={{
+          headerRight: MenuBar
+        }}></Tab.Screen>
       <Tab.Screen
         name="채팅 목록"
         component={ChatIndex}
         options={{
-          headerRight: () => (
-            <Menu
-              w="190"
-              trigger={(triggerProps) => {
-                return (
-                  <Pressable
-                    accessibilityLabel="More options menu"
-                    {...triggerProps}>
-                    <HamburgerIcon />
-                  </Pressable>
-                )
-              }}>
-              <Menu.Item>방 만들기</Menu.Item>
-            </Menu>
-          )
+          headerRight: MenuBar
         }}></Tab.Screen>
-      <Tab.Screen name="친구 추천 목록" component={RecommendIndex}></Tab.Screen>
+      <Tab.Screen
+        name="친구 추천 목록"
+        component={RecommendIndex}
+        options={{headerRight: MenuBar}}></Tab.Screen>
     </Tab.Navigator>
   )
 }

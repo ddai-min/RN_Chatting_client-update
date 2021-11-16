@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useCallback} from 'react'
 import {
   Box,
   Button,
@@ -11,6 +11,8 @@ import {
   Container,
   Badge
 } from 'native-base'
+import {useDispatch} from 'react-redux'
+import {loginAction} from '../../store/login'
 
 export default function Login({navigation}) {
   const [email, setEmail] = useState('')
@@ -18,7 +20,36 @@ export default function Login({navigation}) {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
+  // const checkForm = () => {
+  //   var emailValid = false
+  //   var passwordValid = false
+
+  //   if (email.length == 0) {
+  //     setEmailError('이메일을 입력하세요.')
+  //   } else if (email.indexOf(' ') >= 0) {
+  //     setEmailError('띄어쓰기가 포함되어 있습니다.')
+  //   } else {
+  //     setEmailError('')
+  //     emailValid = true
+  //   }
+
+  //   if (password.length == 0) {
+  //     setPasswordError('비밀번호를 입력하세요.')
+  //   } else if (password.indexOf(' ') >= 0) {
+  //     setPasswordError('띄어쓰기가 포함되어 있습니다.')
+  //   } else {
+  //     setPasswordError('')
+  //     passwordValid = true
+  //   }
+
+  //   if (emailValid && passwordValid) {
+  //     navigation.navigate('Category')
+  //   }
+  // }
+
+  const dispatch = useDispatch()
   const checkForm = () => {
+    dispatch(loginAction({email, password}))
     var emailValid = false
     var passwordValid = false
 
@@ -53,7 +84,7 @@ export default function Login({navigation}) {
           <Input
             type="email"
             placeholder="Email"
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={setEmail}
             value={email}></Input>
           <FormControl.HelperText>
             이메일을 입력해주세요.
@@ -70,7 +101,7 @@ export default function Login({navigation}) {
           <Input
             type="password"
             placeholder="Password"
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={setPassword}
             value={password}></Input>
           <FormControl.HelperText>
             비밀번호를 입력해주세요.
