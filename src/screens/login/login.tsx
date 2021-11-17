@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {Alert} from 'react-native'
 import {
   Box,
   Button,
@@ -16,6 +17,8 @@ import * as L from '../../store/login'
 import * as U from '../../utils'
 import {useNavigation} from '@react-navigation/native'
 import {AppState} from '../../store'
+import {getHostUrl, postWithJWT} from '../../server'
+import * as A from '../../store/asyncStorage'
 
 export default function Login() {
   const navigation = useNavigation()
@@ -51,7 +54,23 @@ export default function Login() {
     }
 
     if (emailValid && passwordValid) {
-      navigation.navigate('Category')
+      U.readFromStorage('signUpJWT')
+        .then((jwt) => {
+          postWithJWT(getHostUrl('/auth/login'), {email, password}, jwt)
+            .then((res) => res.json())
+            .then((result) => {
+              if (result.success == true) {
+                Alert.alert(result.message)
+                dispatch(A.setSignUpJWT(jwt))
+                dispatch(L.loginAction({email, password}))
+                navigation.navigate('Category')
+              } else {
+                Alert.alert(result.message)
+              }
+            })
+            .catch((e) => Alert.alert(e.message))
+        })
+        .catch((err) => Alert.alert(err.message))
     }
   }
 

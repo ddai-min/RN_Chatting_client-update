@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Alert} from 'react-native'
 import {
   Box,
   Button,
@@ -11,7 +12,10 @@ import {
 } from 'native-base'
 import {useDispatch} from 'react-redux'
 import * as S from '../../store/signup'
+import * as U from '../../utils'
 import {useNavigation} from '@react-navigation/native'
+import {getHostUrl, post} from '../../server'
+import * as A from '../../store/asyncStorage'
 
 export default function Signup() {
   const navigation = useNavigation()
@@ -70,6 +74,19 @@ export default function Signup() {
     }
 
     if (nameValid && emailValid && passwordValid && confirmPasswordValid) {
+      post(getHostUrl('/auth/signUp'), {name, email, password})
+        .then((res) => res.json())
+        .then((result) => {
+          const {jwt} = result
+
+          U.writeToStorage('signUpJWT', jwt)
+            .then(() => {
+              dispatch(A.setSignUpJWT(jwt))
+              dispatch(S.signupAction({name, email, password}))
+            })
+            .catch((err) => Alert.alert(err.message))
+        })
+        .catch((err) => Alert.alert(err.message))
       navigation.goBack()
     }
   }
