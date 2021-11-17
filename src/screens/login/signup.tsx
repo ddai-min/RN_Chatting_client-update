@@ -19,9 +19,11 @@ export default function Signup() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [nameError, setNameError] = useState('')
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
+  const [confirmPasswordError, setConfirmPasswordError] = useState('')
 
   const dispatch = useDispatch()
   const checkForm = () => {
@@ -29,6 +31,7 @@ export default function Signup() {
     var nameValid = false
     var emailValid = false
     var passwordValid = false
+    var confirmPasswordValid = false
 
     if (name.length == 0) {
       setNameError('이름을 입력하세요.')
@@ -57,7 +60,16 @@ export default function Signup() {
       passwordValid = true
     }
 
-    if (nameValid && emailValid && passwordValid) {
+    if (confirmPassword.length == 0) {
+      setConfirmPasswordError('비밀번호를 다시 한 번 입력해주세요.')
+    } else if (password != confirmPassword) {
+      setConfirmPasswordError('비밀번호가 일치하지 않습니다.')
+    } else {
+      setConfirmPasswordError('')
+      confirmPasswordValid = true
+    }
+
+    if (nameValid && emailValid && passwordValid && confirmPasswordValid) {
       navigation.goBack()
     }
   }
@@ -111,6 +123,23 @@ export default function Signup() {
         {passwordError.length > 0 && (
           <Badge colorScheme="danger">
             <Text>{passwordError}</Text>
+          </Badge>
+        )}
+        <Divider w="100%" my="5" />
+        <FormControl>
+          <FormControl.Label>비밀번호 확인</FormControl.Label>
+          <Input
+            type="password"
+            placeholder="confirm password"
+            onChangeText={setConfirmPassword}
+            value={confirmPassword}></Input>
+          <FormControl.HelperText>
+            비밀번호를 다시 한 번 입력해주세요.
+          </FormControl.HelperText>
+        </FormControl>
+        {confirmPasswordError.length > 0 && (
+          <Badge colorScheme="danger">
+            <Text>{confirmPasswordError}</Text>
           </Badge>
         )}
       </Container>

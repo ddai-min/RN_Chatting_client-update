@@ -27,7 +27,7 @@ export default function Login() {
   const [passwordError, setPasswordError] = useState('')
 
   const dispatch = useDispatch()
-  const checkForm = () => {
+  const goCategory = () => {
     dispatch(L.loginAction({email, password}))
     var emailValid = false
     var passwordValid = false
@@ -115,13 +115,13 @@ export default function Login() {
             h="50"
             w="100"
             onPress={() => {
-              navigation.navigate('Membership')
+              navigation.navigate('Signup')
             }}>
             <Text fontSize="20">회원가입</Text>
           </Button>
         </Center>
       </HStack>
-      <Button h="8%" rounded="none" onPress={checkForm}>
+      <Button h="8%" rounded="none" onPress={goCategory}>
         <Text color="white" fontSize="20">
           로그인
         </Text>
