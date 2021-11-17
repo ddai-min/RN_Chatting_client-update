@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react'
+import React, {useState, useEffect} from 'react'
 import {
   Box,
   Button,
@@ -11,13 +11,16 @@ import {
   Container,
   Badge
 } from 'native-base'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import * as L from '../../store/login'
+import * as U from '../../utils'
 import {useNavigation} from '@react-navigation/native'
+import {AppState} from '../../store'
 
 export default function Login() {
   const navigation = useNavigation()
 
+  const {loggedIn} = useSelector<AppState, L.State>(({login}) => login)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailError, setEmailError] = useState('')
@@ -51,6 +54,18 @@ export default function Login() {
       navigation.navigate('Category')
     }
   }
+
+  useEffect(() => {
+    U.readFromStorage(L.loggedUserKey)
+      .then((value) => {
+        if (value.length > 0) {
+          const savedUser = JSON.parse(value)
+          setEmail(savedUser.email)
+          setPassword(savedUser.password)
+        }
+      })
+      .catch((e) => {})
+  }, [loggedIn])
 
   return (
     <Box flex={1} bg="white" safeAreaTop>
