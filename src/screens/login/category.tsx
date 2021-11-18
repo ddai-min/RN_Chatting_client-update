@@ -12,7 +12,7 @@ export default function Category() {
         h="8%"
         rounded="none"
         onPress={() => {
-          navigation.navigate('MainIndex')
+          navigation.reset({routes: [{name: 'MainIndex'}]})
         }}>
         <Text color="white" fontSize="20">
           다음

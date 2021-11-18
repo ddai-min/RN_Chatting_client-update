@@ -1,4 +1,5 @@
 import React from 'react'
+import {Alert} from 'react-native'
 import {Menu, Pressable, HamburgerIcon, Divider} from 'native-base'
 import {useDispatch} from 'react-redux'
 import * as L from '../../../store/login'
@@ -6,6 +7,7 @@ import {useNavigation} from '@react-navigation/native'
 
 export function MenuBar() {
   const navigation = useNavigation()
+
   const dispatch = useDispatch()
   const logout = () => {
     dispatch(L.logoutAction())
