@@ -1,6 +1,5 @@
 import React from 'react'
-import {Alert} from 'react-native'
-import {Menu, Pressable, HamburgerIcon, Divider} from 'native-base'
+import {Menu, Pressable, HamburgerIcon, Divider, Toast} from 'native-base'
 import {useDispatch} from 'react-redux'
 import * as L from '../../../store/login'
 import {useNavigation} from '@react-navigation/native'
@@ -10,6 +9,7 @@ export function MenuBar() {
 
   const dispatch = useDispatch()
   const logout = () => {
+    Toast.show({description: '로그아웃 되었습니다.'})
     dispatch(L.logoutAction())
     navigation.navigate('LoginIndex')
   }

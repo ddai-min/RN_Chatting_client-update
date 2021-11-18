@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import {Alert} from 'react-native'
 import {
   Box,
   Button,
@@ -10,7 +9,8 @@ import {
   Text,
   HStack,
   Container,
-  Badge
+  Badge,
+  Toast
 } from 'native-base'
 import {useDispatch, useSelector} from 'react-redux'
 import * as L from '../../store/login'
@@ -60,17 +60,17 @@ export default function Login() {
             .then((res) => res.json())
             .then((result) => {
               if (result.success == true) {
-                Alert.alert(result.message)
+                Toast.show({description: result.message})
                 dispatch(A.setSignUpJWT(jwt))
                 dispatch(L.loginAction({email, password}))
                 navigation.navigate('Category')
               } else {
-                Alert.alert(result.message)
+                Toast.show({description: result.message})
               }
             })
-            .catch((e) => Alert.alert(e.message))
+            .catch((e) => Toast.show({description: e.message}))
         })
-        .catch((err) => Alert.alert(err.message))
+        .catch((err) => Toast.show({description: err.message}))
     }
   }
 

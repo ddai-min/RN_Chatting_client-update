@@ -8,7 +8,8 @@ import {
   FormControl,
   Input,
   Text,
-  Badge
+  Badge,
+  Toast
 } from 'native-base'
 import {useDispatch} from 'react-redux'
 import * as S from '../../store/signup'
@@ -81,6 +82,7 @@ export default function Signup() {
 
           U.writeToStorage('signUpJWT', jwt)
             .then(() => {
+              Toast.show({description: '회원가입이 완료되었습니다.'})
               dispatch(A.setSignUpJWT(jwt))
               dispatch(S.signupAction({name, email, password}))
             })
