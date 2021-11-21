@@ -1,6 +1,6 @@
 import React from 'react'
 import {Menu, Pressable, HamburgerIcon, Divider, Toast} from 'native-base'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import * as L from '../../../store/login'
 import {useNavigation} from '@react-navigation/native'
 

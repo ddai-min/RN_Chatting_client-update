@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import {
-  Box,
   Button,
   Center,
   Divider,
@@ -8,9 +7,10 @@ import {
   Input,
   Text,
   HStack,
-  Container,
   Badge,
-  Toast
+  Toast,
+  KeyboardAvoidingView,
+  ScrollView
 } from 'native-base'
 import {useDispatch, useSelector} from 'react-redux'
 import * as L from '../../store/login'
@@ -87,8 +87,8 @@ export default function Login() {
   }, [loggedIn])
 
   return (
-    <Box flex={1} bg="white" safeAreaTop>
-      <Container flex={1} paddingTop="5" paddingLeft="5">
+    <KeyboardAvoidingView bg="white" flex={1}>
+      <ScrollView flex={1} paddingTop="10" paddingLeft="5" paddingRight="5">
         <FormControl>
           <FormControl.Label>이메일</FormControl.Label>
           <Input
@@ -122,8 +122,8 @@ export default function Login() {
             <Text>{passwordError}</Text>
           </Badge>
         )}
-      </Container>
-      <HStack paddingBottom="3" space={2}>
+      </ScrollView>
+      <HStack paddingBottom="2">
         <Center>
           <Text paddingLeft="30" fontSize="20">
             회원이 아니신가요?
@@ -140,12 +140,12 @@ export default function Login() {
           </Button>
         </Center>
       </HStack>
-      <Button h="8%" rounded="none" onPress={goCategory}>
+      <Button rounded="none" onPress={goCategory}>
         <Text color="white" fontSize="20">
           로그인
         </Text>
       </Button>
-    </Box>
+    </KeyboardAvoidingView>
   )
 }
 

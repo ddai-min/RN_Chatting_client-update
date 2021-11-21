@@ -1,15 +1,15 @@
 import React, {useState} from 'react'
 import {Alert} from 'react-native'
 import {
-  Box,
   Button,
-  Container,
   Divider,
   FormControl,
   Input,
   Text,
   Badge,
-  Toast
+  Toast,
+  KeyboardAvoidingView,
+  ScrollView
 } from 'native-base'
 import {useDispatch} from 'react-redux'
 import * as S from '../../store/signup'
@@ -94,8 +94,8 @@ export default function Signup() {
   }
 
   return (
-    <Box flex={1} bg="white" safeAreaTop>
-      <Container flex={1} paddingTop="5" paddingLeft="5">
+    <KeyboardAvoidingView bg="white" flex={1}>
+      <ScrollView flex={1} paddingTop="10" paddingLeft="5" paddingRight="5">
         <FormControl>
           <FormControl.Label>이름</FormControl.Label>
           <Input
@@ -161,12 +161,12 @@ export default function Signup() {
             <Text>{confirmPasswordError}</Text>
           </Badge>
         )}
-      </Container>
-      <Button h="8%" rounded="none" onPress={checkForm}>
+      </ScrollView>
+      <Button rounded="none" onPress={checkForm}>
         <Text color="white" fontSize="20">
           회원가입
         </Text>
       </Button>
-    </Box>
+    </KeyboardAvoidingView>
   )
 }
