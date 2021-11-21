@@ -14,6 +14,7 @@ export default function MainIndex() {
     <Tab.Navigator
       screenOptions={({route}) => ({
         // headerShown: false,
+        headerRight: MenuBar,
         tabBarIcon: ({focused, color, size}) => {
           let iconName
 
@@ -30,22 +31,9 @@ export default function MainIndex() {
         tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: 'gray'
       })}>
-      <Tab.Screen
-        name="친구 목록"
-        component={ListIndex}
-        options={{
-          headerRight: MenuBar
-        }}></Tab.Screen>
-      <Tab.Screen
-        name="채팅 목록"
-        component={ChatIndex}
-        options={{
-          headerRight: MenuBar
-        }}></Tab.Screen>
-      <Tab.Screen
-        name="친구 추천 목록"
-        component={RecommendIndex}
-        options={{headerRight: MenuBar}}></Tab.Screen>
+      <Tab.Screen name="친구 목록" component={ListIndex}></Tab.Screen>
+      <Tab.Screen name="채팅 목록" component={ChatIndex}></Tab.Screen>
+      <Tab.Screen name="친구 추천 목록" component={RecommendIndex}></Tab.Screen>
     </Tab.Navigator>
   )
 }
