@@ -13,7 +13,6 @@ export default function MainIndex() {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        // headerShown: false,
         headerRight: MenuBar,
         tabBarIcon: ({focused, color, size}) => {
           let iconName
