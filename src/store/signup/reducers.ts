@@ -11,7 +11,12 @@ const signedUpReducer = (state = initialSignedUp, action: T.Actions) => {
   }
   return state
 }
-const initialSignedUser: T.User = {email: '', name: '', password: ''}
+const initialSignedUser: T.User = {
+  email: '',
+  name: '',
+  password: '',
+  category: {one: false, two: false, three: false}
+}
 const signedUserReducer = (state = initialSignedUser, action: T.Actions) => {
   switch (action.type) {
     default:

@@ -30,7 +30,7 @@ export default function Login() {
   const [passwordError, setPasswordError] = useState('')
 
   const dispatch = useDispatch()
-  const goCategory = () => {
+  const goMain = () => {
     dispatch(L.loginAction({email, password}))
     var emailValid = false
     var passwordValid = false
@@ -63,7 +63,7 @@ export default function Login() {
                 Toast.show({description: result.message})
                 dispatch(A.setSignUpJWT(jwt))
                 dispatch(L.loginAction({email, password}))
-                navigation.navigate('Category')
+                navigation.reset({routes: [{name: 'MainIndex'}]})
               } else {
                 Toast.show({description: result.message})
               }
@@ -87,8 +87,8 @@ export default function Login() {
   }, [loggedIn])
 
   return (
-    <KeyboardAvoidingView bg="white" flex={1}>
-      <ScrollView flex={1} paddingTop="10" paddingLeft="5" paddingRight="5">
+    <KeyboardAvoidingView bg="white" flex={1} paddingTop="5">
+      <ScrollView flex={1} paddingLeft="5" paddingRight="5">
         <FormControl>
           <FormControl.Label>이메일</FormControl.Label>
           <Input
@@ -140,7 +140,7 @@ export default function Login() {
           </Button>
         </Center>
       </HStack>
-      <Button rounded="none" onPress={goCategory}>
+      <Button rounded="none" onPress={goMain}>
         <Text color="white" fontSize="20">
           로그인
         </Text>

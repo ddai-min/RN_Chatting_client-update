@@ -1,6 +1,6 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
-import {Box, Text, Button, Center} from 'native-base'
+import {Box, Text, Button, Center, StatusBar} from 'native-base'
 import {useNavigation} from '@react-navigation/native'
 
 import {AppState} from '../../store'
@@ -34,20 +34,22 @@ export default function Initial() {
   }
 
   return (
-    <Box flex={1} bg="white" safeAreaTop>
-      <Center flex={1}>
-        <Text fontSize="50">안녕하세요.</Text>
-      </Center>
-      <Button
-        h="8%"
-        rounded="none"
-        onPress={() => {
-          navigation.navigate('MainIndex')
-        }}>
-        <Text color="white" fontSize="20">
-          다음
-        </Text>
-      </Button>
-    </Box>
+    <StatusBar>
+      <Box flex={1} bg="white" safeAreaTop>
+        <Center flex={1}>
+          <Text fontSize="50">안녕하세요.</Text>
+        </Center>
+        <Button
+          h="8%"
+          rounded="none"
+          onPress={() => {
+            navigation.navigate('MainIndex')
+          }}>
+          <Text color="white" fontSize="20">
+            다음
+          </Text>
+        </Button>
+      </Box>
+    </StatusBar>
   )
 }

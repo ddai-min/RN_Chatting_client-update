@@ -9,7 +9,8 @@ import {
   Badge,
   Toast,
   KeyboardAvoidingView,
-  ScrollView
+  ScrollView,
+  Checkbox
 } from 'native-base'
 import {useDispatch} from 'react-redux'
 import * as S from '../../store/signup'
@@ -29,10 +30,22 @@ export default function Signup() {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [confirmPasswordError, setConfirmPasswordError] = useState('')
+  const [category, setCategory] = useState({
+    one: false,
+    two: false,
+    three: false
+  })
 
   const dispatch = useDispatch()
   const checkForm = () => {
-    dispatch(S.signupAction({name, email, password}))
+    dispatch(
+      S.signupAction({
+        name,
+        email,
+        password,
+        category: {one: category.one, two: category.two, three: category.three}
+      })
+    )
     var nameValid = false
     var emailValid = false
     var passwordValid = false
@@ -75,7 +88,12 @@ export default function Signup() {
     }
 
     if (nameValid && emailValid && passwordValid && confirmPasswordValid) {
-      post(getHostUrl('/auth/signUp'), {name, email, password})
+      post(getHostUrl('/auth/signUp'), {
+        name,
+        email,
+        password,
+        category: {one: category.one, two: category.two, three: category.three}
+      })
         .then((res) => res.json())
         .then((result) => {
           const {jwt} = result
@@ -84,7 +102,18 @@ export default function Signup() {
             .then(() => {
               Toast.show({description: '회원가입이 완료되었습니다.'})
               dispatch(A.setSignUpJWT(jwt))
-              dispatch(S.signupAction({name, email, password}))
+              dispatch(
+                S.signupAction({
+                  name,
+                  email,
+                  password,
+                  category: {
+                    one: category.one,
+                    two: category.two,
+                    three: category.three
+                  }
+                })
+              )
             })
             .catch((err) => Alert.alert(err.message))
         })
@@ -94,8 +123,8 @@ export default function Signup() {
   }
 
   return (
-    <KeyboardAvoidingView bg="white" flex={1}>
-      <ScrollView flex={1} paddingTop="10" paddingLeft="5" paddingRight="5">
+    <KeyboardAvoidingView bg="white" flex={1} paddingTop="5">
+      <ScrollView paddingLeft="5" paddingRight="5">
         <FormControl>
           <FormControl.Label>이름</FormControl.Label>
           <Input
@@ -161,6 +190,26 @@ export default function Signup() {
             <Text>{confirmPasswordError}</Text>
           </Badge>
         )}
+        <Divider w="100%" my="5" />
+        <FormControl>
+          <FormControl.Label>카테고리 선택</FormControl.Label>
+          <Checkbox.Group
+            onChange={setCategory}
+            accessibilityLabel="choose categorys">
+            <Checkbox value="one" onChange={() => category.one}>
+              가가가
+            </Checkbox>
+            <Checkbox value="two" onChange={() => category.two}>
+              나나나
+            </Checkbox>
+            <Checkbox value="three" onChange={() => category.three}>
+              다다다
+            </Checkbox>
+          </Checkbox.Group>
+          <FormControl.HelperText>
+            회원가입 목적을 선택해주세요.
+          </FormControl.HelperText>
+        </FormControl>
       </ScrollView>
       <Button rounded="none" onPress={checkForm}>
         <Text color="white" fontSize="20">
