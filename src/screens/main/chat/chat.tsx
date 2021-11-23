@@ -147,7 +147,7 @@ export default function Chat() {
               <Avatar
                 size="48px"
                 source={{
-                  uri: item.avartarUrl
+                  uri: item.avatarUrl
                 }}
               />
               <VStack>

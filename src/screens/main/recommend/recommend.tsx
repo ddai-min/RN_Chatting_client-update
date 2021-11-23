@@ -1,12 +1,12 @@
 import React from 'react'
-import {ScrollView} from 'native-base'
+import {Box} from 'native-base'
 
 import RecommendCard from './recommendCard'
 
 export default function Recommend() {
   return (
-    <ScrollView bg="white">
+    <Box bg="white">
       <RecommendCard />
-    </ScrollView>
+    </Box>
   )
 }
