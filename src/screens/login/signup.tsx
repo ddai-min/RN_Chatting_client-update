@@ -92,7 +92,7 @@ export default function Signup() {
         name,
         email,
         password,
-        category: {one: category.one, two: category.two, three: category.three}
+        category: setCategory(category)
       })
         .then((res) => res.json())
         .then((result) => {
@@ -193,19 +193,39 @@ export default function Signup() {
         <Divider w="100%" my="5" />
         <FormControl>
           <FormControl.Label>카테고리 선택</FormControl.Label>
-          <Checkbox.Group
-            onChange={setCategory}
-            accessibilityLabel="choose categorys">
-            <Checkbox value="one" onChange={() => category.one}>
-              가가가
-            </Checkbox>
-            <Checkbox value="two" onChange={() => category.two}>
-              나나나
-            </Checkbox>
-            <Checkbox value="three" onChange={() => category.three}>
-              다다다
-            </Checkbox>
-          </Checkbox.Group>
+          <Checkbox
+            value="one"
+            onChange={(isSelected) =>
+              setCategory({
+                one: isSelected,
+                two: category.two,
+                three: category.three
+              })
+            }>
+            가가가
+          </Checkbox>
+          <Checkbox
+            value="two"
+            onChange={(isSelected) =>
+              setCategory({
+                one: category.one,
+                two: isSelected,
+                three: category.three
+              })
+            }>
+            나나나
+          </Checkbox>
+          <Checkbox
+            value="three"
+            onChange={(isSelected) =>
+              setCategory({
+                one: category.one,
+                two: category.two,
+                three: isSelected
+              })
+            }>
+            다다다
+          </Checkbox>
           <FormControl.HelperText>
             회원가입 목적을 선택해주세요.
           </FormControl.HelperText>
