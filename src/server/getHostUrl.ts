@@ -1,6 +1,6 @@
 export const getHostUrl = (path: string) => {
   const protocol = 'http'
-  const ip = '172.30.1.57'
+  const ip = '192.168.0.2'
   const port = 4000
   return `${protocol}://${ip}:${port}${path}`
 }

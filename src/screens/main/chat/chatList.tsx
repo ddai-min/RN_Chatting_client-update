@@ -1,5 +1,14 @@
-import React, {useEffect} from 'react'
-import {Box, FlatList, HStack, Avatar, VStack, Text, Spacer} from 'native-base'
+import React from 'react'
+import {
+  Box,
+  FlatList,
+  HStack,
+  Avatar,
+  VStack,
+  Text,
+  Spacer,
+  Button
+} from 'native-base'
 import {useDispatch} from 'react-redux'
 import * as CCR from '../../../store/createChatRoom'
 import * as U from '../../../utils'
@@ -7,7 +16,9 @@ import {useNavigation} from '@react-navigation/native'
 import {AppState} from '../../../store'
 import * as A from '../../../store/asyncStorage'
 
-export default function Chat() {
+export default function ChatList() {
+  const navigation = useNavigation()
+
   const RenderChatRoom = () => {
     const data = [
       {
@@ -178,6 +189,12 @@ export default function Chat() {
                 {item.timeStamp}
               </Text>
             </HStack>
+            <Button
+              onPress={() => {
+                navigation.navigate('ChatRoom')
+              }}>
+              <Text>가가가가</Text>
+            </Button>
           </Box>
         )}
         keyExtractor={(item) => item.id}
